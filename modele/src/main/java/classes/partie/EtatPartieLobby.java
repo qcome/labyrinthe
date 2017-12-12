@@ -14,5 +14,10 @@ public class EtatPartieLobby implements EtatPartie{
         List<IJoueur> players = this.game.getPlayers();
         players.add(player);
         this.game.setPlayers(players);
+        //change l'etat de la partie si le nombre de joueur de la partie est présent
+        if(players.size() == this.game.getGameSize())
+            this.game.setGameState(FabriqueEtatPartie.getInstance().getEtatPartieEnCours(this.game));
     }
+
+    public boolean hasBegun() { return false; }
 }

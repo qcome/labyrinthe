@@ -17,4 +17,8 @@ public class FabriqueEtatPartie {
     public EtatPartie getEtatPartieLobby(IPartie p) {
         return new EtatPartieLobby(p);
     }
+
+    public EtatPartie getEtatPartieEnCours(IPartie p){
+        return new EtatPartieEnCours(p);
+    }
 }

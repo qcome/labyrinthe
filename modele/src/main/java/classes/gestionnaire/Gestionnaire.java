@@ -54,7 +54,9 @@ public class Gestionnaire implements IGestionnaire{
         throw new UnknownPlayerException();
     }
 
-    public int createGame(int idPlayer, boolean isPrivate, int gameSize) {
+    public int createGame(int idPlayer, boolean isPrivate, int gameSize) throws IncorrectNumberPlayerException {
+        if(gameSize <= 1 || gameSize >= 5)
+            throw new IncorrectNumberPlayerException();
         IJoueur player = getPlayerById(idPlayer);
         IPartie game = FabriquePartie.getInstance().createGame(player, isPrivate, gameSize);
         getPlayerById(player.getId()).joinGame(game);
@@ -67,6 +69,12 @@ public class Gestionnaire implements IGestionnaire{
         IJoueur player = game.getGameCreator();
         IJoueur invitedPlayer = getPlayerById(idInvitedPlayer);
         player.sendInvitation(invitedPlayer, game);
+    }
+
+    public void acceptInvitation(int idGame, int idPlayer) throws GameAlreadyBegunException, GameDoesntExistAnymoreException {
+        IPartie game = getGameById(idGame);
+        IJoueur player = getPlayerById(idPlayer);
+        game.addPlayer(player);
     }
 
     public Map<Integer, IJoueur> getMapPlayers() { return mapPlayers; }
