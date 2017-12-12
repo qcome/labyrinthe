@@ -13,6 +13,6 @@ public interface IPartie extends Serializable{
     public void setPlayers(List<IJoueur> players);
     public int getId();
     public boolean isPrivate();
-
+    public IJoueur getGameCreator();
 
 }

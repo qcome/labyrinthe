@@ -1,6 +1,7 @@
 package classes.joueur;
 
 import classes.exceptions.PlayerAlreadyInGameException;
+import classes.exceptions.UnknownPlayerException;
 import classes.partie.IPartie;
 
 public class EtatJoueurNonConnecte implements EtatJoueur{
@@ -19,7 +20,9 @@ public class EtatJoueurNonConnecte implements EtatJoueur{
 
     public boolean isInGame() { return false; }
 
-    public void joinGame(IPartie game) throws PlayerAlreadyInGameException {
+    public void joinGame(IPartie game)  {}
 
+    public void addInvitation(IPartie game) throws UnknownPlayerException {
+        throw new UnknownPlayerException();
     }
 }

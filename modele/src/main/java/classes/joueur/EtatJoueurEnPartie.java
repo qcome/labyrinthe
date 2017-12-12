@@ -24,7 +24,11 @@ public class EtatJoueurEnPartie implements EtatJoueur{
         return true;
     }
 
-    public void joinGame(IPartie game) throws PlayerAlreadyInGameException {
+    public void joinGame(IPartie game) {
+
+    }
+
+    public void addInvitation(IPartie game) throws PlayerAlreadyInGameException {
         throw new PlayerAlreadyInGameException();
     }
 

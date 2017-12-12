@@ -3,9 +3,11 @@ package classes.joueur;
 import classes.Couleur;
 import classes.exceptions.PlayerAlreadyConnectedException;
 import classes.exceptions.PlayerAlreadyInGameException;
+import classes.exceptions.UnknownPlayerException;
 import classes.partie.IPartie;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public interface IJoueur extends Serializable{
     public String getLogin();
@@ -15,11 +17,14 @@ public interface IJoueur extends Serializable{
     public Couleur getColor();
     public void setColor(Couleur color);
     public int getId();
-    public void setId(int id);
 
     public EtatJoueur getPlayerState();
     public void setPlayerState(EtatJoueur playerState);
 
     public void connection() throws PlayerAlreadyConnectedException;
-    public void joinGame(IPartie game) throws PlayerAlreadyInGameException;
+    public void joinGame(IPartie game);
+    public void sendInvitation(IJoueur invitedPlayer, IPartie game) throws PlayerAlreadyInGameException, UnknownPlayerException;
+    public void addInvitation(IPartie game);
+
+    public Map<Integer, IPartie> getInvitations();
 }

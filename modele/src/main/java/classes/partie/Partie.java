@@ -39,6 +39,8 @@ public class Partie implements IPartie{
 
     public boolean isPrivate() { return isPrivate; }
 
+    public IJoueur getGameCreator(){ return this.players.get(0);}
+
 
     @Override
     public String toString() {

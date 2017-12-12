@@ -11,9 +11,12 @@ public class Main {
     public static void main(String[] args) {
         IGestionnaire gestionnaire = Gestionnaire.getInstance();
 
+        int idPlayerOne = 0;
+        int idPlayerTwo = 0;
+
         try {
-            gestionnaire.registration("douze", "pass", "pass");
-            gestionnaire.registration("treize", "pass", "pass");
+            idPlayerOne = gestionnaire.registration("douze", "pass", "pass");
+            idPlayerTwo = gestionnaire.registration("treize", "pass", "pass");
             System.out.println(gestionnaire.getPlayerById(1).getPlayerState().isConnected());
 
         } catch (LoginAlreadyTakenException e) {
@@ -25,27 +28,33 @@ public class Main {
         } catch (PasswordTooShortException e) {
             System.out.println("EXCEPTION: Mot de passe trop court");
         }
-        int playerid = 0;
+
         try {
-            playerid = gestionnaire.connection("douze", "pass");
-            System.out.println(gestionnaire.getPlayerById(1).getPlayerState().isConnected());
             gestionnaire.connection("douze", "pass");
+            gestionnaire.connection("treize", "pass");
+            System.out.println(gestionnaire.getPlayerById(1).getPlayerState().isConnected());
         } catch (UnknownPlayerException e) {
             System.out.println("EXCEPTION: joueur inconnu");
         } catch (PlayerAlreadyConnectedException e) {
             System.out.println("EXCEPTION: joueur deja connecté");
         }
 
-        IPartie game = null;
+
+
+        int idGameOne = gestionnaire.createGame(idPlayerOne, false, 4);
+        int idGameTwo = gestionnaire.createGame(idPlayerTwo, false, 4);
         try {
-            game = gestionnaire.createGame(playerid, true, 4);
+            gestionnaire.sendInvitation(idGameOne, idPlayerTwo);
+        } catch (UnknownPlayerException e) {
+            System.out.println("EXCEPTION: joueur inconnu / non connecté");
         } catch (PlayerAlreadyInGameException e) {
-            e.printStackTrace();
+            System.out.println("EXCEPTION: joueur déjà dans une partie");
         }
 
-        System.out.println(game);
 
-        System.out.println("joueur connecté" + playerid);
+        
+
+
 
     }
 }

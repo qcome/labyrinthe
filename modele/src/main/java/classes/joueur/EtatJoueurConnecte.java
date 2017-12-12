@@ -26,4 +26,8 @@ public class EtatJoueurConnecte implements EtatJoueur {
     public void joinGame(IPartie game) {
         this.player.setPlayerState(FabriqueEtatJoueur.getInstance().getEtatJoueurEnPartie(this.player));
     }
+
+    public void addInvitation(IPartie game) {
+        this.player.addInvitation(game);
+    }
 }

@@ -54,21 +54,26 @@ public class Gestionnaire implements IGestionnaire{
         throw new UnknownPlayerException();
     }
 
-    public IPartie createGame(int idPlayer, boolean isPrivate, int gameSize) throws PlayerAlreadyInGameException {
+    public int createGame(int idPlayer, boolean isPrivate, int gameSize) {
         IJoueur player = getPlayerById(idPlayer);
         IPartie game = FabriquePartie.getInstance().createGame(player, isPrivate, gameSize);
         getPlayerById(player.getId()).joinGame(game);
         mapGames.put(game.getId(), game);
-        return game;
+        return game.getId();
     }
 
-    public void sendInvitation(IPartie game, int idPlayer, int idInvitedPlayer){
-
+    public void sendInvitation(int idGame, int idInvitedPlayer) throws UnknownPlayerException, PlayerAlreadyInGameException {
+        IPartie game = getGameById(idGame);
+        IJoueur player = game.getGameCreator();
+        IJoueur invitedPlayer = getPlayerById(idInvitedPlayer);
+        player.sendInvitation(invitedPlayer, game);
     }
 
     public Map<Integer, IJoueur> getMapPlayers() { return mapPlayers; }
 
     public IJoueur getPlayerById(int id){ return mapPlayers.get(id); }
+
+    public IPartie getGameById(int id){ return mapGames.get(id);}
 
 
 

@@ -4,6 +4,7 @@ import classes.Couleur;
 import classes.Partie;
 import classes.exceptions.PlayerAlreadyConnectedException;
 import classes.exceptions.PlayerAlreadyInGameException;
+import classes.exceptions.UnknownPlayerException;
 import classes.partie.IPartie;
 
 import java.util.Hashtable;
@@ -15,8 +16,8 @@ public class Joueur implements IJoueur{
     private String login;
     private String password;
     private Couleur color;
-    private int id;
-    private Map invitations;
+    private final int id;
+    private Map<Integer, IPartie> invitations;
 
     private EtatJoueur playerState;
 
@@ -26,7 +27,7 @@ public class Joueur implements IJoueur{
         this.login = login;
         this.password = password;
         this.color = null;
-        this.invitations = new Hashtable<String, Partie>();
+        this.invitations = new Hashtable<Integer, IPartie>();
         this.id = idPlayers++;
         this.playerState = FabriqueEtatJoueur.getInstance().getEtatJoueurNonConnecte(this);
     }
@@ -35,8 +36,16 @@ public class Joueur implements IJoueur{
         this.playerState.connection();
     }
 
-    public void joinGame(IPartie game) throws PlayerAlreadyInGameException {
+    public void joinGame(IPartie game) {
         this.playerState.joinGame(game);
+    }
+
+    public void sendInvitation(IJoueur invitedPlayer, IPartie game) throws PlayerAlreadyInGameException, UnknownPlayerException {
+        invitedPlayer.getPlayerState().addInvitation(game);
+    }
+
+    public void addInvitation(IPartie game){
+        invitations.put(game.getId(), game);
     }
 
     public String getLogin() { return login; }
@@ -53,11 +62,13 @@ public class Joueur implements IJoueur{
 
     public int getId() { return id; }
 
-    public void setId(int id) { this.id = id; }
-
     public EtatJoueur getPlayerState() { return playerState; }
 
     public void setPlayerState(EtatJoueur playerState) { this.playerState = playerState; }
+
+    public Map<Integer, IPartie> getInvitations() { return invitations; }
+
+    public void setInvitations(Map<Integer, IPartie> invitations) { this.invitations = invitations; }
 
     @Override
     public String toString() {

@@ -11,6 +11,8 @@ public interface IGestionnaire extends Serializable{
     public int registration(String login, String password, String passwordConfirmation) throws LoginAlreadyTakenException, LoginTooShortException, PasswordConfirmationException, PasswordTooShortException;
     public Map<Integer, IJoueur> getMapPlayers();
     public int connection(String login, String password) throws UnknownPlayerException, PlayerAlreadyConnectedException;
-    public IPartie createGame(int idPlayer, boolean isPrivate, int gameSize) throws PlayerAlreadyInGameException;
+    public int createGame(int idPlayer, boolean isPrivate, int gameSize);
     public IJoueur getPlayerById(int id);
+    public void sendInvitation(int idGame, int idInvitedPlayer) throws UnknownPlayerException, PlayerAlreadyInGameException;
+    public IPartie getGameById(int id);
 }
