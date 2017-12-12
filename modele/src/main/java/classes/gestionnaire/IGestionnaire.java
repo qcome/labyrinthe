@@ -1,14 +1,16 @@
 package classes.gestionnaire;
 
-import classes.exceptions.LoginAlreadyTakenException;
-import classes.exceptions.LoginTooShortException;
-import classes.exceptions.PasswordConfirmationException;
-import classes.exceptions.PasswordTooShortException;
+import classes.exceptions.*;
 import classes.joueur.IJoueur;
+import classes.partie.IPartie;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.Map;
 
-public interface IGestionnaire {
+public interface IGestionnaire extends Serializable{
     public int registration(String login, String password, String passwordConfirmation) throws LoginAlreadyTakenException, LoginTooShortException, PasswordConfirmationException, PasswordTooShortException;
-    public List<IJoueur> getListPlayers();
+    public Map<Integer, IJoueur> getMapPlayers();
+    public int connection(String login, String password) throws UnknownPlayerException, PlayerAlreadyConnectedException;
+    public IPartie createGame(int idPlayer, boolean isPrivate, int gameSize) throws PlayerAlreadyInGameException;
+    public IJoueur getPlayerById(int id);
 }
