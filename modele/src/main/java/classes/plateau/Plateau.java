@@ -4,6 +4,7 @@ import classes.cases.FabriqueCase;
 import classes.cases.ICase;
 import classes.cases.TypeCase;
 import classes.modele.Coordonnees;
+import classes.modele.Direction;
 import classes.partie.IPartie;
 import classes.tresor.TypeTresor;
 
@@ -19,11 +20,14 @@ public class Plateau implements IPlateau{
         this.board = new ICase[7][7];
         FabriqueCase caseFactory = FabriqueCase.getInstance();
         //initialisation plateau
-        board[0][0] = caseFactory.getCaseTresor(TypeCase.L, TypeTresor.ARAIGNEE, new Coordonnees(0, 0));
-        board[1][1] = caseFactory.getCaseSimple(TypeCase.T, new Coordonnees(1, 1));
+
+        board[0][0] = caseFactory.getCaseSimple(TypeCase.L, Direction.G, new Coordonnees(0, 0), this);
+        board[0][2] = caseFactory.getCaseTresor(TypeCase.T, Direction.B, TypeTresor.SALAMANDRE, new Coordonnees(0, 2), this);
+        board[0][4] = caseFactory.getCaseTresor(TypeCase.T, Direction.B, TypeTresor.COFFRE, new Coordonnees(0, 4), this);
         //board[0][1] = caseFactory.getCaseSimple()
-        System.out.println(board[0][0]);
-        System.out.println(board[1][1]);
+        
+        System.out.println(Arrays.toString(board[0]));
+
 
     }
 

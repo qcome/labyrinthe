@@ -2,9 +2,7 @@ package classes.modele;
 
 import java.io.Serializable;
 
-/**
- * Created by o2131661 on 10/04/17.
- */
+
 public class Coordonnees implements Serializable {
 
     int x;

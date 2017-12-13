@@ -1,6 +1,8 @@
 package classes.cases;
 
 import classes.modele.Coordonnees;
+import classes.modele.Direction;
+import classes.plateau.IPlateau;
 import classes.tresor.TypeTresor;
 
 public class FabriqueCase {
@@ -15,12 +17,12 @@ public class FabriqueCase {
         return myCase;
     }
 
-    public ICase getCaseTresor(TypeCase typeCase, TypeTresor typeTresor, Coordonnees coord) {
-        return new CaseTresor(typeCase, typeTresor, coord);
+    public ICase getCaseTresor(TypeCase typeCase, Direction direction, TypeTresor typeTresor, Coordonnees coord, IPlateau board) {
+        return new CaseTresor(typeCase, direction, typeTresor, coord, board);
     }
 
-    public ICase getCaseSimple(TypeCase typeCase, Coordonnees coord){
-        return new CaseSimple(typeCase, coord);
+    public ICase getCaseSimple(TypeCase typeCase, Direction direction, Coordonnees coord, IPlateau board){
+        return new CaseSimple(typeCase, direction, coord, board);
     }
 
 }

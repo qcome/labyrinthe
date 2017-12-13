@@ -1,5 +1,5 @@
 package classes.cases;
 
 public enum TypeCase {
-    L, T;
+    L, T, I;
 }
