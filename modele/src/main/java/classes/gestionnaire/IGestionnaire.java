@@ -18,5 +18,6 @@ public interface IGestionnaire extends Serializable{
     public IPartie getGameById(int id);
     public IJoueur getPlayerById(int id);
     public Map<Integer, IJoueur> getMapPlayers();
+    public Map<Integer, IPartie> getMapGames();
 
 }

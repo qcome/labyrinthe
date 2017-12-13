@@ -5,7 +5,9 @@ import classes.exceptions.PlayerAlreadyInGameException;
 import classes.exceptions.UnknownPlayerException;
 import classes.partie.IPartie;
 
-public interface EtatJoueur {
+import java.io.Serializable;
+
+public interface EtatJoueur extends Serializable{
     public boolean isConnected();
     public void connection() throws PlayerAlreadyConnectedException;
     public boolean isInGame();

@@ -15,6 +15,7 @@ public class Gestionnaire implements IGestionnaire{
     private static Gestionnaire instance;
 
     private Map<Integer, IJoueur> mapPlayers;
+
     private Map<Integer, IPartie> mapGames;
 
     public static Gestionnaire getInstance(){
@@ -79,9 +80,13 @@ public class Gestionnaire implements IGestionnaire{
 
     public Map<Integer, IJoueur> getMapPlayers() { return mapPlayers; }
 
+    public Map<Integer, IPartie> getMapGames() { return mapGames; }
+
     public IJoueur getPlayerById(int id){ return mapPlayers.get(id); }
 
     public IPartie getGameById(int id){ return mapGames.get(id);}
+
+
 
 
 

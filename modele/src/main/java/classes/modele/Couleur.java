@@ -1,4 +1,4 @@
-package classes;
+package classes.modele;
 
 public enum Couleur {
 

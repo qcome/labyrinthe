@@ -1,6 +1,7 @@
 package classes.partie;
 
 import classes.joueur.IJoueur;
+import classes.plateau.IPlateau;
 
 import java.util.List;
 
@@ -20,4 +21,17 @@ public class EtatPartieLobby implements EtatPartie{
     }
 
     public boolean hasBegun() { return false; }
+
+    public boolean isEnded() {
+        return false;
+    }
+
+    public IPlateau getBoard() {
+        return null;
+    }
+
+
+    public String getGameStateMsg() {
+        return "Partie lobby";
+    }
 }

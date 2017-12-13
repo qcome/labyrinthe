@@ -5,15 +5,15 @@ import classes.gestionnaire.Gestionnaire;
 import classes.gestionnaire.IGestionnaire;
 import classes.joueur.IJoueur;
 import classes.partie.IPartie;
+import classes.tresor.TypeTresor;
+
+import java.util.Arrays;
 
 public class Main {
 
 
 
     public static void main(String[] args) {
-
-
-
         IGestionnaire gestionnaire = Gestionnaire.getInstance();
 
         int idPlayerOne = 0;
@@ -60,6 +60,8 @@ public class Main {
             e.printStackTrace();
         }
 
+        IPartie game = gestionnaire.getGameById(idGameOne);
+        System.out.println(game.getGameStateMsg());
         try {
             System.out.println(idGameOne);
             System.out.println(idPlayerTwo);
@@ -70,6 +72,7 @@ public class Main {
         } catch (PlayerAlreadyInGameException e) {
             System.out.println("EXCEPTION: joueur déjà dans une partie");
         }
+        System.out.println(game.getGameStateMsg());
 
         try {
             gestionnaire.acceptInvitation(idGameOne, idPlayerTwo);
@@ -79,7 +82,9 @@ public class Main {
         } catch (GameDoesntExistAnymoreException e) {
             System.out.println("EXCEPTION: La partie n'existe plus");
         }
+        System.out.println(game.getGameStateMsg());
 
+        System.out.println(Arrays.toString(TypeTresor.values()));
 
 
 

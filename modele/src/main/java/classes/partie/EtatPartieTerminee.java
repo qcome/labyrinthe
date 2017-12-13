@@ -3,6 +3,7 @@ package classes.partie;
 import classes.exceptions.GameAlreadyBegunException;
 import classes.exceptions.GameDoesntExistAnymoreException;
 import classes.joueur.IJoueur;
+import classes.plateau.IPlateau;
 
 public class EtatPartieTerminee implements EtatPartie{
     IPartie game;
@@ -16,5 +17,17 @@ public class EtatPartieTerminee implements EtatPartie{
 
     public boolean hasBegun() {
         return false;
+    }
+
+    public boolean isEnded() {
+        return true;
+    }
+
+    public IPlateau getBoard() {
+        return null;
+    }
+
+    public String getGameStateMsg() {
+        return "Partie terminée";
     }
 }

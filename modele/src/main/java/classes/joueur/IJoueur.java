@@ -1,6 +1,6 @@
 package classes.joueur;
 
-import classes.Couleur;
+import classes.modele.Couleur;
 import classes.exceptions.PlayerAlreadyConnectedException;
 import classes.exceptions.PlayerAlreadyInGameException;
 import classes.exceptions.UnknownPlayerException;
